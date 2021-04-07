@@ -1,10 +1,10 @@
 require 'oystercard'
 
 describe Oystercard do
-  let(:station)  { double :station }
+  let(:entry_station)  { double :station }
   let(:top_up_and_touch_in) do 
     subject.top_up(10)
-    subject.touch_in(station)
+    subject.touch_in(entry_station)
   end
 
   it "card has balance of 0 at start" do
@@ -33,7 +33,7 @@ describe Oystercard do
   end
 
   it "Prevents you touching in below minimum value" do
-    expect { subject.touch_in(station) }.to raise_error("Error: Not enough money.")
+    expect { subject.touch_in(entry_station) }.to raise_error("Error: Not enough money.")
   end
 
   it "charges min fare on touch_out" do
@@ -43,7 +43,7 @@ describe Oystercard do
 
   it "remembers the entry station after the touch in" do
     top_up_and_touch_in
-    expect(subject.entry_station).to eq station
+    expect(subject.entry_station).to eq entry_station
   end
 
   it "forgets the entry station after touch out" do

@@ -14,10 +14,10 @@ class Oystercard
     @balance += money
   end
 
-  def touch_in(station)
+  def touch_in(entry_station)
     raise "Error: Not enough money." if @balance < MINIMUM_FARE
     @in_use = true
-    @entry_station = station
+    @entry_station = entry_station
   end
 
   def touch_out
